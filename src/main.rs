@@ -117,7 +117,7 @@ fn main() {
 }
 
 fn sync(mut opts: Opts) -> Result<(), String> {
-    opts.path = Path::new(&opts.file).to_path_buf();
+    opts.path = Path::new(&opts.file).canonicalize().unwrap().to_path_buf();
 
     opts.dir_path = match opts.path.parent() {
         Some(path) => path.to_path_buf(),
