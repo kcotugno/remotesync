@@ -152,7 +152,9 @@ fn sync(mut opts: Opts) -> Result<(), String> {
         return sync_remote(&opts);
     }
 
-    remove_backup_file(&opts)?;
+    if !opts.dry_run {
+        remove_backup_file(&opts)?;
+    }
 
     if opts.force {
         return sync_local(&opts);
